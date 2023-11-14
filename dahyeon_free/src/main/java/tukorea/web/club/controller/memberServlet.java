@@ -30,7 +30,7 @@ public class memberServlet extends HttpServlet {
 		cmdReq = request.getParameter("cmd");
 
 		if (cmdReq.equals("join")) {
-			response.sendRedirect("register.html");
+			response.sendRedirect("join.html");
 		} else if (cmdReq.equals("list")) {
 			memberDAO dao = new memberDAO();
 			ArrayList<memberVO> memberList = dao.getmemberList();
@@ -42,14 +42,14 @@ public class memberServlet extends HttpServlet {
 			String strId = request.getParameter("id");
 			dao.delete(strId);
 
-			ArrayList<memberVO> studentList = dao.getmemberList();
-			request.setAttribute("studentList", studentList);
+			ArrayList<memberVO> memberList = dao.getmemberList();
+			request.setAttribute("memberList", memberList);
 			RequestDispatcher view = request.getRequestDispatcher("votelist.jsp");
 			view.forward(request, response);
 		} else if (cmdReq.equals("update")) {
 			memberDAO dao = new memberDAO();
-			memberVO student = dao.read(request.getParameter("id"));
-			request.setAttribute("student", student);
+			memberVO member = dao.read(request.getParameter("id"));
+			request.setAttribute("member", member);
 			RequestDispatcher view = request.getRequestDispatcher("update.jsp");
 			view.forward(request, response);
 		}
@@ -80,7 +80,7 @@ public class memberServlet extends HttpServlet {
 			else message = "가입 실패입니다.";
 			
 			request.setAttribute("greeting", message);
-			request.setAttribute("student", memberVO);
+			request.setAttribute("member", memberVO);
 			
 			RequestDispatcher view = request.getRequestDispatcher("joinComplete.jsp");
 			view.forward(request, response);
@@ -102,7 +102,7 @@ public class memberServlet extends HttpServlet {
 			else message = "수정 실패입니다.";
 			
 			request.setAttribute("greetings", message);
-			request.setAttribute("student", memberVO);
+			request.setAttribute("member", memberVO);
 			
 			RequestDispatcher view = request.getRequestDispatcher("joinComplete.jsp");
 			view.forward(request, response);
