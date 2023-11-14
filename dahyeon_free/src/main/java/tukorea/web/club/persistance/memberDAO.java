@@ -18,7 +18,7 @@ public class memberDAO {
 	void connect() {
 		try {
 			Class.forName(jdbc_driver);
-			conn = DriverManager.getConnection(jdbc_url, "spring", "6692");
+			conn = DriverManager.getConnection(jdbc_url, );
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
