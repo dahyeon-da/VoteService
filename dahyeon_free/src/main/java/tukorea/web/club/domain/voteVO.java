@@ -39,17 +39,17 @@ public class voteVO {
 		this.memberID = memberID;
 	}
 	
-	public int getGood() {
+	public int getGoodCount() {
 		return good;
 	}
-	public void setGood(int good) {
+	public void setGoodCount(int good) {
 		this.good = good;
 	}
 	
-	public int getBad() {
+	public int getBadCount() {
 		return bad;
 	}
-	public void setBad(int bad) {
+	public void setBadCount(int bad) {
 		this.bad = bad;
 	}
 	

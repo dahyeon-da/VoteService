@@ -3,17 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Web Service Programming Homework</title>
-<link rel="stylesheet" href="resources/student.css" type="text/css"></link>
 </head>
 <body>
 	<header>Create Your Account</header>
 	<div class=div>
 		<form
-			action="http://localhost:8080/dahyeon_free/voteServlet?cmd=voteGenerate"
-			method="post">
+			action="http://localhost:8080/dahyeon_free/voteServlet?cmd=voteGenerateComplete"
+			method="post" target="_self">
 
 			<fieldset>
-				<legend>Personnel Information</legend>
+				<legend>Vote Generate</legend>
 				<ul>
 					<li>Vote Title : <input type="text" name="voteTitle"
 						placeholder="투표 제목을 입력해주세요."></li>

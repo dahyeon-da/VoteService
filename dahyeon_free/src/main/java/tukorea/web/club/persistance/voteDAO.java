@@ -75,10 +75,10 @@ public class voteDAO {
 				vo.setVoteNum(rs.getInt("voteNum"));
 				vo.setVoteTitle(rs.getString("voteTitle"));
 				vo.setVoteContent(rs.getString("voteContent"));
-				vo.setMemberID(rs.getString("id"));
+				vo.setMemberID(rs.getString("memberID"));
 				vo.setVoteDate(rs.getDate("voteDate"));
-				vo.setBad(rs.getInt("bad"));
-				vo.setGood(rs.getInt("good"));
+				vo.setBadCount(rs.getInt("bad"));
+				vo.setGoodCount(rs.getInt("good"));
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -121,8 +121,8 @@ public class voteDAO {
 			voteupdate.setVoteTitle(rs.getString("voteTitle"));
 			voteupdate.setVoteContent(rs.getString("voteContent"));
 			voteupdate.setMemberID(rs.getString("memberID"));
-			voteupdate.setGood(rs.getInt("good"));
-			voteupdate.setBad(rs.getInt("bad"));
+			voteupdate.setGoodCount(rs.getInt("good"));
+			voteupdate.setBadCount(rs.getInt("bad"));
 			voteupdate.setVoteDate(rs.getDate("voteDate"));
 		}
 
