@@ -12,9 +12,9 @@
 		TUKOREA 2023 <br> Web Service Programming Community
 	</header>
 	<%
-		memberVO student = (memberVO) request.getAttribute("member");
+		memberVO member = (memberVO) request.getAttribute("member");
 	%>
-	<p id=sect><%=request.getAttribute("greeting")%><br>
+	<p id=sect><%=request.getAttribute("greetings")%><br>
 	<div class=div>
 		<p id=sect>커뮤니티 가입을 축하합니다.</p>
 		<div id=center>
@@ -27,11 +27,11 @@
 					<td id=yellow>이메일</td>
 				</tr>
 				<tr>
-					<td><%=student.getId()%></td>
-					<td><%=student.getUsername()%></td>
-					<td><%=student.getNickname()%></td>
-					<td><%=student.getMobile()%></td>
-					<td><%=student.getEmail()%></td>
+					<td><%=member.getId()%></td>
+					<td><%=member.getUsername()%></td>
+					<td><%=member.getNickname()%></td>
+					<td><%=member.getMobile()%></td>
+					<td><%=member.getEmail()%></td>
 				</tr>
 			</table>
 		</div>

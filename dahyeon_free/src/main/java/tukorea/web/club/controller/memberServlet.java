@@ -35,7 +35,7 @@ public class memberServlet extends HttpServlet {
 			memberDAO dao = new memberDAO();
 			ArrayList<memberVO> memberList = dao.getmemberList();
 			request.setAttribute("memberList", memberList);
-			RequestDispatcher view = request.getRequestDispatcher("voteList.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("memberList.jsp");
 			view.forward(request, response);
 		} else if (cmdReq.equals("delete")) {
 			memberDAO dao = new memberDAO();
@@ -44,13 +44,13 @@ public class memberServlet extends HttpServlet {
 
 			ArrayList<memberVO> memberList = dao.getmemberList();
 			request.setAttribute("memberList", memberList);
-			RequestDispatcher view = request.getRequestDispatcher("votelist.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("memberList.jsp");
 			view.forward(request, response);
 		} else if (cmdReq.equals("update")) {
 			memberDAO dao = new memberDAO();
 			memberVO member = dao.read(request.getParameter("id"));
 			request.setAttribute("member", member);
-			RequestDispatcher view = request.getRequestDispatcher("update.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("memberUpdate.jsp");
 			view.forward(request, response);
 		}
 	}
@@ -79,7 +79,7 @@ public class memberServlet extends HttpServlet {
 			if(memberDao.addMember(memberVO)) message = "가입 축하합니다!";
 			else message = "가입 실패입니다.";
 			
-			request.setAttribute("greeting", message);
+			request.setAttribute("greetings", message);
 			request.setAttribute("member", memberVO);
 			
 			RequestDispatcher view = request.getRequestDispatcher("joinComplete.jsp");
@@ -97,11 +97,11 @@ public class memberServlet extends HttpServlet {
 			
 			memberDAO dao = new memberDAO();
 			
-			String message = "";
-			if(dao.update(memberVO)) message = "수정이 완료되었습니다.";
-			else message = "수정 실패입니다.";
+			String greeting = "";
+			if(dao.update(memberVO))greeting = "수정이 완료되었습니다.";
+			else greeting = "수정 실패입니다.";
 			
-			request.setAttribute("greetings", message);
+			request.setAttribute("greetings", greeting);
 			request.setAttribute("member", memberVO);
 			
 			RequestDispatcher view = request.getRequestDispatcher("joinComplete.jsp");
