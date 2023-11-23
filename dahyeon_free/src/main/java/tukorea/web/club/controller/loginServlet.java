@@ -35,6 +35,7 @@ public class loginServlet extends HttpServlet {
 
 			HttpSession session = request.getSession();
 			session.setAttribute("loggedInUser", vo);
+			session.setMaxInactiveInterval(1800);
 			
 			// Create an instance of the LoginService
 			loginService loginService = new loginService();

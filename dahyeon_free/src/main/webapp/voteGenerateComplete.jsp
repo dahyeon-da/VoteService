@@ -16,7 +16,6 @@
 	%>
 	<p id=sect><%=request.getAttribute("greetings")%><br>
 	<div class=div>
-		<p id=sect>투표글 등록이 완료되었습니다.</p>
 		<div id=center>
 			<table>
 				<tr>
@@ -26,15 +25,14 @@
 					<td>아이디</td>
 					<td>좋아요 수</td>
 					<td>싫어요 수</td>
-					<td>투표 날짜</td>
 				</tr>
 				<tr>
 					<td><%=vote.getVoteNum()%></td>
 					<td><%=vote.getVoteTitle()%></td>
 					<td><%=vote.getVoteContent()%></td>
+					<td><%=vote.getMemberID() %></td>
 					<td><%=vote.getGoodCount()%></td>
 					<td><%=vote.getBadCount()%></td>
-					<td><%=vote.getVoteDate() %></td>
 				</tr>
 			</table>
 		</div>

@@ -1,1 +1,22 @@
 @charset "UTF-8";
+
+.btn {
+	border: 0;
+	outline: 0;
+	background-color: none;
+}
+
+#logo {
+	height: 50px;
+	width: 100px;
+}
+
+.background {
+	width: 70%;
+}
+
+.flex {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}

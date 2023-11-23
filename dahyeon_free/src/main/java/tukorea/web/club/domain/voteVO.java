@@ -1,7 +1,5 @@
 package tukorea.web.club.domain;
 
-import java.sql.Date;
-
 public class voteVO {
 	private int voteNum;
 	private String voteTitle;
@@ -9,7 +7,6 @@ public class voteVO {
 	private String memberID;
 	private int good;
 	private int bad;
-	private Date voteDate;
 	
 	public int getVoteNum() {
 		return voteNum;
@@ -51,12 +48,5 @@ public class voteVO {
 	}
 	public void setBadCount(int bad) {
 		this.bad = bad;
-	}
-	
-	public Date getVoteDate() {
-		return voteDate;
-	}
-	public void setVoteDate(Date voteDate) {
-		this.voteDate = voteDate;
 	}
 }

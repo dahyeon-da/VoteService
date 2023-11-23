@@ -41,19 +41,41 @@ public class voteDAO {
 		}
 	}
 
-	public boolean addVote(voteVO vo) {
+	public int maxVoteNum() {
 		connect();
 
-		// Get the next value for voteNum
-		int nextVoteNum = maxVoteNum() + 1;
+		try {
+			String sql = "SELECT max(voteNum) FROM dahyeon_free_vote";
+			pstmt = conn.prepareStatement(sql);
 
-		String sql = "INSERT INTO dahyeon_free_vote (voteNum, voteTitle, voteContent) VALUES (?, ?, ?)";
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				return rs.getInt(1);
+			} else {
+				return -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+		}
+	}
+
+	public boolean addVote(voteVO vo, String memberID, int nextVoteNum) {
+		connect();
+
+		String sql = "INSERT INTO dahyeon_free_vote VALUES (?, ?, ?, ?, ?, ?)";
+
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, nextVoteNum); // Set the next value of voteNum
-			pstmt.setString(7, vo.getVoteTitle());
+			pstmt.setInt(1, nextVoteNum);
 			pstmt.setString(2, vo.getVoteContent());
-			pstmt.executeUpdate(); // Use executeUpdate for INSERT queries
+			pstmt.setString(3, memberID);
+			pstmt.setInt(4, 0);
+			pstmt.setInt(5, 0);
+			pstmt.setString(6, vo.getVoteTitle());
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -76,9 +98,9 @@ public class voteDAO {
 				vo.setVoteTitle(rs.getString("voteTitle"));
 				vo.setVoteContent(rs.getString("voteContent"));
 				vo.setMemberID(rs.getString("memberID"));
-				vo.setVoteDate(rs.getDate("voteDate"));
 				vo.setBadCount(rs.getInt("bad"));
 				vo.setGoodCount(rs.getInt("good"));
+				votelist.add(vo);
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -89,22 +111,22 @@ public class voteDAO {
 		return votelist;
 	}
 
-	public voteVO voteRead(String memberID) {
+	public voteVO voteRead(String voteNum) {
 		connect();
 
 		voteVO voteupdate = new voteVO();
 
-		String sql = "SELECT * FROM dahyeon_free_vote WHERE memberId = ?";
+		String sql = "SELECT * FROM dahyeon_free_vote WHERE voteNum = ?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(3, memberID);
+			pstmt.setString(1, voteNum);
 
 			// 쿼리 실행
 			ResultSet rs = pstmt.executeQuery();
 
 			// 학생 정보 읽어오기
-			voteupdate = extractmemberInfo(rs);
+			voteupdate = extractvoteInfo(rs);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -114,7 +136,7 @@ public class voteDAO {
 		return voteupdate;
 	}
 
-	private voteVO extractmemberInfo(ResultSet rs) throws SQLException {
+	private voteVO extractvoteInfo(ResultSet rs) throws SQLException {
 		voteVO voteupdate = new voteVO();
 
 		if (rs.next()) {
@@ -123,21 +145,44 @@ public class voteDAO {
 			voteupdate.setMemberID(rs.getString("memberID"));
 			voteupdate.setGoodCount(rs.getInt("good"));
 			voteupdate.setBadCount(rs.getInt("bad"));
-			voteupdate.setVoteDate(rs.getDate("voteDate"));
+			voteupdate.setVoteNum(rs.getInt("voteNum"));
 		}
 
 		return voteupdate;
 	}
 
-	public boolean updateVote(voteVO vo) {
+	public void delete(String voteNum) {
+		connect();
+
+		try {
+			// SQL DELETE 쿼리 작성
+			String sql = "DELETE FROM dahyeon_free_vote WHERE voteNum = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, voteNum);
+			int rowsAffected = pstmt.executeUpdate();
+
+			if (rowsAffected > 0) {
+				System.out.println("투표글 삭제 성공");
+			} else {
+				System.out.println("투표글 삭제 실패");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+
+	public boolean voteUpdate(voteVO vo, String voteNum) {
 		connect();
 		boolean success = false;
 
 		try {
-			String sql = "UPDATE dahyeon_free_vote SET voteTitle=?, voteContent=?";
+			String sql = "UPDATE dahyeon_free_vote SET voteTitle = ?, voteContent = ? WHERE voteNum = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(2, vo.getVoteContent());
-			pstmt.setString(7, vo.getVoteTitle());
+			pstmt.setString(1, vo.getVoteContent());
+			pstmt.setString(2, vo.getVoteTitle());
+			pstmt.setString(3, voteNum);
 
 			int rowsAffected = pstmt.executeUpdate();
 
@@ -155,25 +200,4 @@ public class voteDAO {
 		return success;
 	}
 
-	public int maxVoteNum() {
-		connect();
-
-		try {
-			String sql = "SELECT max(voteNum) FROM dahyeon_free_vote";
-			pstmt = conn.prepareStatement(sql);
-
-			ResultSet rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				return rs.getInt(1);
-			} else {
-				return -1;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return -1;
-		} finally {
-			disconnect();
-		}
-	}
 }

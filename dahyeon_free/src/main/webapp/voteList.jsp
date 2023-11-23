@@ -19,7 +19,6 @@
 					<td>아이디</td>
 					<td>좋아요 수</td>
 					<td>싫어요 수</td>
-					<td>투표 날짜</td>
 				</tr>
 				<%
 				@SuppressWarnings("unchecked")
@@ -30,15 +29,17 @@
 					<td><%=vo.getVoteNum()%></td>
 					<td><%=vo.getVoteTitle()%></td>
 					<td><%=vo.getVoteContent()%></td>
+					<td><%=vo.getMemberID()%></td>
 					<td><%=vo.getGoodCount()%></td>
 					<td><%=vo.getBadCount()%></td>
-					<td><%=vo.getVoteDate()%></td>
 
 					<td><a
-						href="http://localhost:8080/dahyeon_free/memberServlet?cmd=update&id=<%=vo.getMemberID()%>"
+						href="http://localhost:8080/dahyeon_free/voteServlet?cmd=voteUpdate&voteNum=<%=vo.getVoteNum()%>"
 						target="_self">수정</a> <a
-						href="http://localhost:8080/dahyeon_free/memberServlet?cmd=delete&id=<%=vo.getMemberID()%>"
-						target="_self">삭제</a></td>
+						href="http://localhost:8080/dahyeon_free/voteServlet?cmd=voteDelete&voteNum=<%=vo.getVoteNum()%>"
+						target="_self">삭제</a>
+						<button><img src="resources/like.png"></button>
+						<button><img src="resources/unlike.png"></button></td>
 				</tr>
 				<%
 				}
