@@ -98,8 +98,8 @@ public class voteDAO {
 				vo.setVoteTitle(rs.getString("voteTitle"));
 				vo.setVoteContent(rs.getString("voteContent"));
 				vo.setMemberID(rs.getString("memberID"));
-				vo.setBadCount(rs.getInt("bad"));
-				vo.setGoodCount(rs.getInt("good"));
+				vo.setBadCount(rs.getInt("badCount"));
+				vo.setGoodCount(rs.getInt("goodCount"));
 				votelist.add(vo);
 			}
 			rs.close();
@@ -143,8 +143,8 @@ public class voteDAO {
 			voteupdate.setVoteTitle(rs.getString("voteTitle"));
 			voteupdate.setVoteContent(rs.getString("voteContent"));
 			voteupdate.setMemberID(rs.getString("memberID"));
-			voteupdate.setGoodCount(rs.getInt("good"));
-			voteupdate.setBadCount(rs.getInt("bad"));
+			voteupdate.setGoodCount(rs.getInt("goodCount"));
+			voteupdate.setBadCount(rs.getInt("badCount"));
 			voteupdate.setVoteNum(rs.getInt("voteNum"));
 		}
 
@@ -198,6 +198,22 @@ public class voteDAO {
 			disconnect();
 		}
 		return success;
+	}
+
+	public boolean updateCount(int voteNum, String type) {
+		connect();
+		try {
+			String sql = "UPDATE dahyeon_free_vote SET " + type + "Count = " + type + "Count + 1 WHERE voteNum = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, voteNum);
+
+			// Execute the update query
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		} return true;
 	}
 
 }

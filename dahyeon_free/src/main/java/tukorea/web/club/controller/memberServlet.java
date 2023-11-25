@@ -52,6 +52,8 @@ public class memberServlet extends HttpServlet {
 			request.setAttribute("member", member);
 			RequestDispatcher view = request.getRequestDispatcher("memberUpdate.jsp");
 			view.forward(request, response);
+		} else if (cmdReq.equals("login")) {
+			response.sendRedirect("login.html");
 		}
 	}
 

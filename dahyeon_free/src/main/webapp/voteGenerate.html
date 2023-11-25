@@ -3,25 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <title>Home</title>
+<link rel="stylesheet" href="resources/vote.css" type="text/css"></link>
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@500&family=Black+Han+Sans&family=Dongle&family=Gowun+Dodum&family=Hi+Melody&family=Jua&family=Nanum+Gothic:wght@800&family=Open+Sans&family=Poor+Story&display=swap')
+	;
+</style>
 </head>
 <body>
-	<header>Create Your Vote</header>
-	<div class=div>
+	<div class="flex_column">
+		<div class="flex_between">
+			<div id="logo">
+				<a class="btn"
+				href="http://localhost:8080/dahyeon_free/voteServlet?cmd=voteList"
+				target="_self"> <img src="resources/dahyeon_free_logo.png">
+			</a>
+			</div>
+			<div class="restrict margin_up3 flex margin_right2">
+				<a href="http://localhost:8080/dahyeon_free/memberServlet?cmd=join"
+					target="_self" class="font20">JOIN</a> &nbsp;|&nbsp; <a
+					href="http://localhost:8080/dahyeon_free/memberServlet?cmd=login"
+					target="_self" class="font20">LOGIN</a>
+			</div>
+		</div>
 		<form
 			action="http://localhost:8080/dahyeon_free/voteServlet?cmd=voteGenerateComplete"
 			method="post">
-			<fieldset>
+			<fieldset class="background margin_up8">
+				<div class="flex">
+					<img src="resources/avatar.png" width="60px" height="60px" class="margin_left4">
+					<p class="font30 margin_bottom1">당신의 고민은 무엇인가요?</p>
+				</div>
 				<ul>
-					<li>Vote Title : <input type="text" name="voteTitle"
-						placeholder="투표 제목을 입력해주세요."></li>
-					<li>vote Content : <input type="text" name="voteContent"
-						placeholder="투표 내용을 입력해주세요."></li>
+					<li class="background_color input flex_column"><p>vote
+							Title</p>
+						<input type="text" name="voteTitle" placeholder="투표 제목을 입력해주세요."
+						autofocus required placeholder="제목을 입력해주세요." class="input_form"></li>
+					<li class="background_color input flex_column"><p>vote
+							Content</p> <input type="text" name="voteContent"
+						placeholder="투표 내용을 입력해주세요." class="input_form"></li>
 				</ul>
 			</fieldset>
 			<br>
-			<fieldset>
-				<input type="submit" name="submit" value="보내기"> <input
-					type="reset" name="reset" value="다시 작성">
+			<fieldset class="background">
+				<input class="select margin_left" type="submit" name="submit"
+					value="작성완료">
 			</fieldset>
 		</form>
 	</div>

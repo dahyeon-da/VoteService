@@ -4,36 +4,46 @@
 <meta charset="UTF-8">
 <title>Web Service Programming Homework</title>
 <link rel="stylesheet" href="resources/vote.css" type="text/css"></link>
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@500&family=Black+Han+Sans&family=Dongle&family=Gowun+Dodum&family=Hi+Melody&family=Jua&family=Nanum+Gothic:wght@800&family=Open+Sans&family=Poor+Story&display=swap')
+	;
+</style>
 </head>
 <body>
 	<div>
-		<div>
-			<div id="logo">
-				<a class="btn"
-					href="http://localhost:8080/dahyeon_free/memberServlet?cmd=list"
-					target="_self"> <img src="resources/dahyeon_free_logo.png">
-				</a>
+		<div class="flex_column">
+			<div class="flex_between">
+				<div id="logo">
+					<a class="btn"
+						href="http://localhost:8080/dahyeon_free/voteServlet?cmd=voteList"
+						target="_self"> <img src="resources/dahyeon_free_logo.png">
+					</a>
+				</div>
+				<div class="restrict margin_up3 flex margin_right2">
+					<a href="http://localhost:8080/dahyeon_free/memberServlet?cmd=join"
+						target="_self" class="font20">JOIN</a> &nbsp;|&nbsp; <a
+						href="http://localhost:8080/dahyeon_free/memberServlet?cmd=login"
+						target="_self" class="font20">LOGIN</a>
+				</div>
 			</div>
-			<div class="flex background">
-				<h1> 선택이 어려운 당신을 위한 투표 커뮤니티 서비스! </h1>
-				<div>
-					<p>
-						반갑습니다. <br> 웹 서비스 프로그래밍 학생들을 위한 커뮤니티입니다. <br> <a
-							href="http://localhost:8080/dahyeon_free/memberServlet?cmd=join"
-							target="_self">커뮤니티에 가입하세요.</a> <br> <br> 전체 회원 목록입니다.<br>
-						<a
-							href="http://localhost:8080/dahyeon_free/memberServlet?cmd=list"
-							target="_self">전체회원</a> 
-							<a
-							href="http://localhost:8080/dahyeon_free/voteServlet?cmd=generate"
-							target="_self">투표글 작성하러가기</a>
+			<div class="flex_column">
+				<h1 class="background margin_up8">선택이 어려운 당신을 위한 투표 커뮤니티 서비스!</h1>
+				<div class="background">
+					<p class="explanation">
+						반갑습니다. <br>당신의 고민을 등록해보세요!!<br>많은 커뮤니티 이용자들이 찬성, 반대로 투표를
+						진행합니다! <br> 원하시는 메뉴를 선택해주세요 <br>
 					</p>
+					<div class="margin_up5">
+						<a
+							href="http://localhost:8080/dahyeon_free/voteServlet?cmd=voteList"
+							target="_self" class="select">기존 투표글 둘러보기</a> <a
+							href="http://localhost:8080/dahyeon_free/voteServlet?cmd=generate"
+							target="_self" class="select">투표글 작성하러가기</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class=div>
-		<p>저 이다현을 소개합니다.</p>
 	</div>
 </body>
 </html>

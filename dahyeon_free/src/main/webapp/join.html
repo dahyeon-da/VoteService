@@ -3,37 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Web Service Programming Homework</title>
-<link rel="stylesheet" href="resources/student.css" type="text/css"></link>
+<link rel="stylesheet" href="resources/vote.css" type="text/css"></link>
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@500&family=Black+Han+Sans&family=Dongle&family=Gowun+Dodum&family=Hi+Melody&family=Jua&family=Nanum+Gothic:wght@800&family=Open+Sans&family=Poor+Story&display=swap')
+	;
+</style>
 </head>
 <body>
-	<header>Create Your Account</header>
-	<div class=div>
+	<div class="flex_center margin_up15 login_form">
 		<form
 			action="http://localhost:8080/dahyeon_free/memberServlet?cmd=join"
 			method="post">
 
 			<fieldset>
-				<legend>Personnel Information</legend>
+				<legend class="join_font">Join</legend>
 				<ul>
-					<li>ID : <input type="text" name="id" autofocus required
-						placeholder="공백없이 입력하세요"></li>
-					<li>PASSWORD : <input type="password" name="passwd" required
-						placeholder="공백없이 입력하세요"></li>
-					<li>USERNAME : <input type="text" name="username" required
-						placeholder="공백없이 입력하세요"></li>
-					<li>NICKNAME : <input type="text" name="nickname" required
-						placeholder="공백없이 입력하세요"></li>
-					<li>MOBILE : <input type="text" name="mobile"
-						placeholder="***-****-****"></li>
-					<li>EMAIL : <input type="text" name="email"
-						placeholder="****@****.***"></li>
+					<li class="login_box">ID : <input type="text" name="id"
+						autofocus required placeholder="공백없이 입력하세요"></li>
+					<li class="login_box margin_up3">PASSWORD : <input
+						type="password" name="passwd" required placeholder="공백없이 입력하세요"></li>
+					<li class="login_box margin_up3">USERNAME : <input type="text"
+						name="username" required placeholder="공백없이 입력하세요"></li>
+					<li class="login_box margin_up3">NICKNAME : <input type="text"
+						name="nickname" required placeholder="공백없이 입력하세요"></li>
+					<li class="login_box margin_up3">MOBILE : <input type="text"
+						name="mobile" placeholder="***-****-****"></li>
+					<li class="login_box margin_up3">EMAIL : <input type="text"
+						name="email" placeholder="****@****.***"></li>
 				</ul>
 			</fieldset>
 			<br>
-			<fieldset>
-				<input type="submit" name="submit" value="보내기"> <input
-					type="reset" name="reset" value="다시 작성">
-			</fieldset>
+			<div class="margin_left_join">
+				<fieldset>
+					<input type="submit" name="submit" value="회원가입 완료" class="reverse_select">
+					<input type="reset" name="reset" value="모두 지우기" class="reverse_select">
+				</fieldset>
+			</div>
 		</form>
 	</div>
 </body>

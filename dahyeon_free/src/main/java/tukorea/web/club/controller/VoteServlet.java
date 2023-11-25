@@ -54,6 +54,32 @@ public class VoteServlet extends HttpServlet {
 			request.setAttribute("voteNum", voteNum);
 			RequestDispatcher view = request.getRequestDispatcher("voteUpdate.jsp");
 			view.forward(request, response);
+		} else if (cmdReq.equals("updateCount")) {
+			updateCount(request, response);
+			voteDAO dao = new voteDAO();
+			ArrayList<voteVO> voteList = dao.getvoteList();
+			request.setAttribute("voteList", voteList);
+			RequestDispatcher view = request.getRequestDispatcher("voteList.jsp");
+			view.forward(request, response);
+		}
+	}
+
+	private void updateCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String voteNumParam = request.getParameter("voteNum");
+		String type = request.getParameter("type");
+
+		if (voteNumParam != null && type != null) {
+			int voteNum = Integer.parseInt(voteNumParam);
+
+			// Update the count in the database using your DAO
+			voteDAO voteDAO = new voteDAO();
+			voteDAO.updateCount(voteNum, type);
+
+			// Return a success message or updated count if needed
+			System.out.println("+1");
+		} else {
+			// Handle invalid parameters
+			response.getWriter().write("Invalid parameters");
 		}
 	}
 
@@ -99,14 +125,10 @@ public class VoteServlet extends HttpServlet {
 			}
 		} else if (cmdReq.equals("voteUpdate")) {
 			voteVO voteVO = new voteVO();
-			String voteNumString = request.getParameter("voteNum");
-			int voteNum = Integer.parseInt(voteNumString);
 
 			voteVO.setVoteTitle(request.getParameter("voteTitle"));
 			voteVO.setVoteContent(request.getParameter("voteContent"));
-			voteVO.setVoteNum(voteNum);
 			voteVO.setMemberID(request.getParameter("memberID"));
-			voteVO.setVoteTitle(request.getParameter("voteTitle"));
 
 			voteDAO dao = new voteDAO();
 

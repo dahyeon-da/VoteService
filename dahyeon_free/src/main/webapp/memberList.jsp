@@ -5,10 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/vote.css" type="text/css"></link>
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@500&family=Black+Han+Sans&family=Dongle&family=Gowun+Dodum&family=Hi+Melody&family=Jua&family=Nanum+Gothic:wght@800&family=Open+Sans&family=Poor+Story&display=swap')
+	;
+</style>
 </head>
 <body>
-	<div>
+	<div class="background">
 		<header>Member List</header>
+		<p>기능만 구현했습니당</p>
 		<div>
 			<table>
 				<tr>
